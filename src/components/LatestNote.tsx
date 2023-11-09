@@ -10,7 +10,6 @@ const LatestNote: FC<{ content: string; title: string }> = (props) => {
         <div id="Latest note" className={"h-64 w-full rounded-md drop-shadow-md grow bg-ph-orange-500 p-10"}>
             <h1 className={"pb-10 text-4xl line-clamp-3"}> {parsedTitle.body.innerText} </h1>
             <p className={"line-clamp-3"}> {parsedContent.body.innerText} </p>
-
         </div>
     );
 };

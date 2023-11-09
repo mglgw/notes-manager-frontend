@@ -9,7 +9,6 @@ interface ShowNotesProps {
     notes: Note[];
     noteId: null;
     setNoteId: (id: null) => void;
-
 }
 
 const SideBarWithNotes = (props: ShowNotesProps) => {

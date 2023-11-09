@@ -8,24 +8,21 @@ const RegisterBox = () => {
     const navigate = useNavigate();
     const submitRegister = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         const email = inputEmail?.current?.value;
         const password = inputPassword?.current?.value;
         const res = await axios.post("https://localhost:7052/api/users", {email, password}, {
             headers: {
                 'Content-Type': 'application/json'
             }
-
         })
         if (res.status === 200) {
             navigate("/login");
         }
-
     }
     return (
-        <div id={"loginbox"} className={" h-full w-auto"}>
+        <div id={"login-box"} className={" h-full w-auto"}>
             <div className={"w-96 h-96 mx-auto "}>
-                <form onSubmit={(event) => submitRegister(event)} id={"loginholder static"}
+                <form onSubmit={(event) => submitRegister(event)} id={"login-holder static"}
                       className={"flex flex-col items-center align-middle bg-ph-orange-500 h-full rounded-md shadow-md shadow-ph-orange-500  p-12"}>
                     <div className={"text-shark-bg-900 text-3xl font-bold ml-2"}>Create an account</div>
                     <h2 className={"text-shark-bg-900 font-bold text-xl"}>Your email</h2>

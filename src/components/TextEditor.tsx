@@ -6,28 +6,21 @@ import {NotesContext} from "../store/NotesContext.tsx";
 i18nChangeLanguage('en')
 
 function TextEditor() {
-    // editor instance
     const [editor, setEditor] = useState<IDomEditor | null>(null)  // TS syntax
     const notesContext = useContext(NotesContext)
-    // const [editor, setEditor] = useState(null)                  // JS syntax
-
-    //Simulate ajax async set html
     useEffect(() => {
         setTimeout(() => {
             notesContext.setHtml('')
         }, 1500)
     }, [])
 
-    const toolbarConfig: Partial<IToolbarConfig> = {}  // TS syntax
+    const toolbarConfig: Partial<IToolbarConfig> = {}
 
-    const editorConfig: Partial<IEditorConfig> = {  // TS syntax
+    const editorConfig: Partial<IEditorConfig> = {
         placeholder: "Type here...",
         MENU_CONF: {
             fontFamily: {
                 fontFamilyList: [
-                    // Support two format
-                    //   1. string
-                    //   2. object like { name: 'xxx', value: 'xxx' }
                     {name: 'Tahoma', value: 'Tahoma'},
                     {name: 'Arial', value: 'Arial'},
                     {name: 'Verdana', value: 'Verdana'},
@@ -36,7 +29,6 @@ function TextEditor() {
         }
     }
 
-    // Timely destroy editor, important!
     useEffect(() => {
         return () => {
             if (editor == null) return
