@@ -23,38 +23,34 @@ const TopNoteNavigation = () => {
             if (res.status === 200) {
                 notesContext.getNotes();
                 notesContext.setNoteId(res.data.id)
-
             }
         } else {
             const res = await axios.put("https://localhost:7052/api/notes", {content, title, id: notesContext.noteId}, {
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                withCredentials: true
             });
             if (res.status === 200) {
                 notesContext.getNotes();
             }
         }
-
     }
     console.log("https://localhost:7052/api/notes/" + notesContext.noteId)
     const deleteNote = async () => {
         const res = await axios.delete("https://localhost:7052/api/notes/" + notesContext.noteId, {
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            withCredentials: true
         });
         notesContext.getNotes();
         if (res.status === 200) {
             notesContext.setNoteId(null)
         }
-
-
     }
-
     return (
         <div className={"flex flex-col min-h-fit h-16 w-fit"}>
-
             <TextEditor/>
             <button className={"mb-2 hover:bg-ph-orange-500 hover:text-shark-900 hover:drop-shadow"}
                     onClick={submitNote}>Save

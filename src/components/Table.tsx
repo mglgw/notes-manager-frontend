@@ -3,9 +3,7 @@ import {useCallback, useContext, useEffect, useState} from "react";
 import {Note} from "./Pages/Home.tsx";
 import {NotesContext} from "../store/NotesContext.tsx";
 
-
 const columnHelper = createColumnHelper<Note>()
-
 const columns = [
     columnHelper.accessor("title", {
         header: "Note Title",
@@ -24,7 +22,6 @@ const columns = [
         footer: info => info.column.id,
     }),
 ]
-
 const Table = () => {
     const [data, setData] = useState<Note[]>(() => [])
     const notesContext = useContext(NotesContext)
@@ -47,7 +44,6 @@ const Table = () => {
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
-
 
     const table = useReactTable({
         data,
@@ -90,6 +86,5 @@ const Table = () => {
         </div>
     );
 };
-
 
 export default Table;

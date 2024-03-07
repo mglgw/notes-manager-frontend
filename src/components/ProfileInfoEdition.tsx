@@ -8,12 +8,11 @@ const ProfileInfoEdition = () => {
     const inputConfirmNewPassword = useRef<HTMLInputElement>(null)
     const submitPasswordChange = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-
         const email = inputEmail?.current?.value;
         const oldPassword = inputCurrentPassword?.current?.value;
         const newPassword = inputNewPassword?.current?.value;
         const confirmNewPassword = inputConfirmNewPassword.current?.value;
-        const res = await axios.put("https://localhost:7052/api/users/changepass", {
+        await axios.put("https://localhost:7052/api/users/changepass", {
             email,
             oldPassword,
             newPassword,
@@ -21,13 +20,13 @@ const ProfileInfoEdition = () => {
         }, {
             headers: {
                 'Content-Type': 'application/json'
-            }
-
+            },
+            withCredentials: true
         })
     }
     return (
         <div className={"flex flex-col items-center align-middle h-screen"}>
-            <form onSubmit={(event) => submitPasswordChange(event)} id={"inputbox"}
+            <form onSubmit={(event) => submitPasswordChange(event)} id={"input-box"}
                   className={"flex flex-col items-center align-middle w-96 h-96 mx-auto  "}>
                 <span className={"text-xl p-12"}>My Account</span>
                 <input ref={inputEmail} type="email" placeholder={"e-mail"}

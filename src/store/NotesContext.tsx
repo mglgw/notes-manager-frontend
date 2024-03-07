@@ -32,9 +32,10 @@ const NotesProvider: FC<{ children: ReactNode }> = ({children}) => {
     const [notes, setNotes] = useState<Note[]>([]);
     const [html, setHtml] = useState<string>("");
     const [noteId, setNoteId] = useState<null | number>(null);
-
     const getNotes = useCallback(async () => {
-        const res = await axios.get<Note[]>('https://localhost:7052/api/notes')
+        const res = await axios.get<Note[]>('https://localhost:7052/api/notes', {
+            withCredentials: true
+        })
         setNotes(res.data);
     }, [])
 
@@ -46,7 +47,6 @@ const NotesProvider: FC<{ children: ReactNode }> = ({children}) => {
             setHtml: setHtml,
             noteId: noteId,
             setNoteId: setNoteId,
-
         }}>
             {children}
         </NotesContext.Provider>
